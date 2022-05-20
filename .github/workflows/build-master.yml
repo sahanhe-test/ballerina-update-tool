@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - working-branch
 
 jobs:
   build:
@@ -16,12 +17,20 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+    - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
       env:
           GITHUB_TOKEN: ${{ secrets.PUBLISH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
-        ./gradlew build jacocoTestReport
+        ./gradlew build sonarqube jacocoTestReport --info
     - name: Generate Codecov Report
       uses: codecov/codecov-action@v1
