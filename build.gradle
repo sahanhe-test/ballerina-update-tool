@@ -308,7 +308,6 @@ processResources {
     filter { String line -> line.replace('${project.version}', "${project.version}")}
 }
 
-
 sonarqube {
   properties {
     property "sonar.projectKey", "sahanhe-test_ballerina-update-tool"
