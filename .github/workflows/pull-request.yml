@@ -33,7 +33,7 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle
-        run: ./gradlew clean build
+        run: ./gradlew clean build -x test
         env:
           TEST_MODE_ACTIVE: true
 
@@ -48,6 +48,6 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle
-        run: ./gradlew clean build
+        run: ./gradlew clean build -x test
         env:
           TEST_MODE_ACTIVE: true
