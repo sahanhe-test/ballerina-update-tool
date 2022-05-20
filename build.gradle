@@ -316,7 +316,6 @@ sonarqube {
   }
 }
 
-
 test.dependsOn copyBallerinaVersionFilesForTests
 test.dependsOn copyInstallerVersionFilesForTests
 test.dependsOn copyBinForTests
