@@ -17,6 +17,8 @@ jobs:
       run: ./gradlew build jacocoTestReport
       env:
         TEST_MODE_ACTIVE: true
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     - name: Generate Codecov Report
       uses: codecov/codecov-action@v1
 
